@@ -17,11 +17,11 @@ public class Instantiation implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        userRepository.deleteAll(); // Limpa o banco
+        userRepository.deleteAll();
 
         User marcos = new User(null, "Marcos Baggio", "marcosbaggio@hotmail.com");
         User savio = new User(null, "Savio Lewandowisk", "saviolewandowiks@gmail.com");
 
-        userRepository.saveAll(Arrays.asList(marcos, savio)); // Salva os caras de novo!
+        userRepository.saveAll(Arrays.asList(marcos, savio));
     }
 }
