@@ -2,6 +2,7 @@ package com.marcelo.workshopmongo.service;
 
 import com.marcelo.workshopmongo.domain.User;
 import com.marcelo.workshopmongo.repository.UserRepository;
+import com.marcelo.workshopmongo.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Service;
@@ -22,13 +23,6 @@ public class UserService {
     public User update(User obj) {
         User newObj = findById(obj.getId());
         updateData(newObj, obj);
-        return repo.save(newObj);
+        return repository.save(newObj);
     }
-
-    public User findById(String id) {
-        Optional<User> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
-    }
-
-    repository.deleteById(id);
 }
