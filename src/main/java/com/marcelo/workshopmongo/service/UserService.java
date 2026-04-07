@@ -24,7 +24,7 @@ public class UserService {
     public User update(User obj) {
         User newObj = findById(obj.getId());
         updateData(newObj, obj);
-        return repository.save(newObj);
+        return repo.save(newObj);
     }
 
     public User insert(User obj){
@@ -32,8 +32,7 @@ public class UserService {
     }
 
     public void delete(String id){
-        findById(id);
-        repository.delete(id);
+        repository.deleteById(id);
     }
 
     public User fromDTO(UserDTO objDto){
