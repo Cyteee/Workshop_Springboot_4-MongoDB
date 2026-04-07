@@ -27,6 +27,11 @@ public class UserService {
         return repo.save(newObj);
     }
 
+    public void updateData(User newObj, User obj){
+        newObj.setName(obj.getName());
+        newObj.setEmail(obj.getEmail());
+    }
+
     public User insert(User obj){
         return repository.insert(obj);
     }
