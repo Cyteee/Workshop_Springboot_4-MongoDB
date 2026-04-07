@@ -1,5 +1,6 @@
 package com.marcelo.workshopmongo.service;
 
+import com.marcelo.workshopmongo.DTO.UserDTO;
 import com.marcelo.workshopmongo.domain.User;
 import com.marcelo.workshopmongo.repository.UserRepository;
 import com.marcelo.workshopmongo.service.exceptions.ObjectNotFoundException;
@@ -28,5 +29,9 @@ public class UserService {
 
     public User insert(User obj){
         return repository.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDto){
+        return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
 }
