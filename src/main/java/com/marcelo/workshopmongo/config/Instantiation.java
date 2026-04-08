@@ -1,5 +1,6 @@
 package com.marcelo.workshopmongo.config;
 
+import com.marcelo.workshopmongo.DTO.AuthorDTO;
 import com.marcelo.workshopmongo.domain.Post;
 import com.marcelo.workshopmongo.domain.User;
 import com.marcelo.workshopmongo.repository.PostRepository;
@@ -28,16 +29,20 @@ public class Instantiation implements CommandLineRunner {
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         userRepository.deleteAll();
+        postRepository.deleteAll();
 
         User marcos = new User(null, "Marcos Baggio", "marcosbaggio@hotmail.com");
         User savio = new User(null, "Savio Lewandowisk", "saviolewandowiks@gmail.com");
+        User maria = new User(null, "Maria Brown", "maria@gmail.com");
 
-        userRepository.saveAll(Arrays.asList(marcos, savio));
+        userRepository.saveAll(Arrays.asList(marcos, savio, maria));
 
-        Post post1 = new Post(null, sdf.parse("21/03/2026"), "Partiu viagem", "Vou viajar para Sao Paulo. Abracos!", maria);
-        Post post2 = new Post(null, sdf.parse("02/04/2026"), "Bom dia", "Acordei feliz hoje!", maria);
-
+        Post post1 = new Post(null, sdf.parse("21/03/2026"), "Partiu viagem", "Vou viajar para Sao Paulo. Abracos!", new AuthorDTO(maria));
+        Post post2 = new Post(null, sdf.parse("02/04/2026"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
 
         postRepository.saveAll(Arrays.asList(post1, post2));
+
+        maria.getPosts().addAll(Arrays.asList(post1, post2));
+        userRepository.save(maria);
     }
 }
